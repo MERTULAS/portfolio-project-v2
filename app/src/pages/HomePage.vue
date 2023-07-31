@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
+import AnimationBackground from '../views/AnimationBackground.vue';
 
 
   const mainMenu = [
@@ -76,6 +77,7 @@ import { onMounted } from 'vue';
   <div>
     BURAYA BIR SEYLER
   </div>
+  <AnimationBackground />
 </template>
 
 <style>
