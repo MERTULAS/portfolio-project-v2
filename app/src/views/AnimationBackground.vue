@@ -1,5 +1,6 @@
 <template>
     <canvas id="background-canvas"></canvas>
+    <!-- <video src="../assets/space-warp.mov" autoplay loop playsinline muted></video> -->
 </template>
 
 <script setup>
@@ -16,25 +17,35 @@ class Star {
 class Space {
     constructor(ctx) {
         this.ctx = ctx;
-        this.stars = Array.from({ length: 500 }, 
-            () => new Star(Math.random() * innerWidth, Math.random() * innerHeight, Math.random() * 3)
+        this.stars = Array.from({ length: 200 }, 
+            () => new Star(Math.random() * innerWidth, Math.random() * innerHeight, Math.random())
+        );
+        
+        this.constantStars = Array.from({ length: 200 }, 
+            () => new Star(Math.random() * innerWidth, Math.random() * innerHeight, Math.random())
         );
 
         this.originPoint = {
             x: innerWidth >> 1,
             y: innerHeight >> 1
         }
+
+        this.hue = 0;
+        this.lightness = 0;
     }
 
     #calculateMoveStep (star) {
         const xDiff = star.x - this.originPoint.x;
         const yDiff = star.y - this.originPoint.y;
-        const angle = Math.atan2(yDiff, xDiff);
-        star.x += Math.cos(angle);
-        star.y += Math.sin(angle);
-        if (star.x > innerWidth || star.x < 0) star.x = Math.random() * ( innerWidth >> 1 );
-        if (star.y > innerHeight || star.y < 0) star.y = Math.random() * ( innerHeight >> 1 );
-
+        let angle = Math.atan2(yDiff, xDiff);
+        // angle += angle < 0 ? 360 : 0
+        star.x += Math.cos(angle) * .5;
+        star.y += Math.sin(angle) * .5; 
+        if (star.x > innerWidth || star.x < 0 || star.y > innerHeight || star.y < 0) { 
+            star.x = (this.originPoint.x) - 100 + Math.random() * 200;
+            star.y =  (this.originPoint.y) - 100 + Math.random() * 200; 
+            // star.z = 1;
+        }
         // star.z += 0.01;
     }
 
@@ -43,18 +54,24 @@ class Space {
         this.stars.forEach(star => {
             this.#calculateMoveStep(star);
         })
-
-        addEventListener('mousemove', (e) => {
-            this.originPoint.x = e.x;
-            this.originPoint.y = e.y;
-        })
     }
 
     #draw() {
-        this.ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+        this.ctx.fillStyle = 'rgba(0, 0, 0, .7)';
         this.ctx.fillRect(0, 0, innerWidth, innerHeight);
+        this.hue = this.hue > 360 ? 0 : this.hue + .5;
+        this.ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`;
         this.stars.forEach(star => {
-            this.ctx.fillStyle = 'whitesmoke';
+            this.ctx.beginPath();
+            this.ctx.arc(star.x, star.y, star.z, 0, Math.PI * 2);
+            this.ctx.fill();
+        })
+
+        
+        this.lightness = this.lightness > 99 ? 30 : this.lightness;
+        this.lightness += .35
+        this.ctx.fillStyle = `hsl(256, 0%, ${this.lightness}%)`;
+        this.constantStars.forEach(star => {
             this.ctx.beginPath();
             this.ctx.arc(star.x, star.y, star.z, 0, Math.PI * 2);
             this.ctx.fill();
@@ -75,6 +92,11 @@ onMounted(() => {
     canvas.height = window.innerHeight;
     window.space = new Space(ctx);
 
+    addEventListener('mousemove', (e) => {
+        window.space.originPoint.x = e.x;
+        window.space.originPoint.y = e.y;
+    })
+
     spaceAnimation();
 })
 
@@ -84,8 +106,10 @@ onMounted(() => {
 #background-canvas {
     width: 100vw;
     height: 100vh;
-    background: rgb(0, 0, 0);
+    background: radial-gradient(ellipse at center, #242938, #000 100%);
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: -5;
 }
 </style>
