@@ -6,8 +6,7 @@
     </ul>
 </template>
 <script setup>
-    import { 
-        InstagramOutlined,
+    import {
         YoutubeOutlined,
         TwitterOutlined,
         GithubOutlined,
@@ -18,27 +17,22 @@
         {
             title: 'GitHub',
             icon: GithubOutlined,
-            url: ''
+            url: 'https://github.com/MERTULAS'
         },
         {
             title: 'LinkedIn',
             icon: LinkedinOutlined,
-            url: ''
+            url: 'https://www.linkedin.com/in/mert-ulas/'
         },
         {
             title: 'Twitter',
             icon: TwitterOutlined,
-            url: ''
+            url: 'https://twitter.com/mertulaas'
         },
         {
             title: 'Youtube',
             icon: YoutubeOutlined,
-            url: ''
-        },
-        {
-            title: 'Instagram',
-            icon: InstagramOutlined,
-            url: ''
+            url: 'https://www.youtube.com/@mertulas5967'
         }
     ]
 

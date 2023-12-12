@@ -10,9 +10,17 @@ import NavigationMenu from './components/layouts/NavigationMenu.vue';
   <RouterView />
 </template>
 
-<style scoped>
+<style>
   #app {
-    display: block;
+    display: flex;
     position: relative;
+    flex-direction: column;
+  }
+
+  .page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
