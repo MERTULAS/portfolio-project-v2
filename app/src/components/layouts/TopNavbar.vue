@@ -5,27 +5,48 @@
             <li
                 v-for="(menuItem, index) in menu"
                 :key="menuItem.title"
-                @click="() => router.push(menuItem.path)"> <span>0{{ index + 1 }}</span>. {{ menuItem.title }}</li>
+                @click="() => router.push(menuItem.path)"> <span>0{{ index + 1 }}</span>. {{ menuItem.title }}
+            </li>
+            <SocialMediaSet class="social-medias-on-menu-list"/>
         </ul>
-        <ul class="navbar-responsive-toggler" @click="() => navbarToggle()">
+        <ul v-if="route.path !== '/'" class="navbar-responsive-toggler" @click="() => navbarToggle()">
             <li v-for="(_, index) of Array(3)" :key="index"></li>
         </ul>
-        <SocialMediaSet />
+        <SocialMediaSet class="social-medias-on-root-nav"/>
     </nav>
 </template>
 <script setup>
-    import { ref } from 'vue';
+    import { ref, onMounted, watch } from 'vue';
     import { useRouter, useRoute } from 'vue-router';
     import SocialMediaSet from './SocialMediaSet.vue';
 
     const navbarToggler = ref(false);
+    const router = useRouter();
+    const route = useRoute();
 
     function navbarToggle() {
         navbarToggler.value = !navbarToggler.value;
     }
 
-    const router = useRouter();
-    const route = useRoute();
+    onMounted(() => {
+        window.onresize = (event) => {
+            if (event.target.innerWidth > 1800) {
+                navbarToggler.value = false;
+            }
+        }
+    })
+    
+    watch(
+        () => route.path,
+        () => {
+            navbarToggler.value = false;
+        }
+    );
+
+    watch(
+        () => navbarToggler.value,
+        (val, old) => console.log(val, old)
+    )
 
     const menu = [
         {
@@ -68,20 +89,20 @@
         margin-left: 20px;
     }
 
-    nav ul {
+    .nav-menu {
         display: flex;
         gap: 40px;
         font-size: 2vh;
         z-index: 6;
     }
 
-    nav ul:not(.navbar-responsive-toggler) li,
+    .nav-menu li,
     .navbar-responsive-toggler {
         cursor: pointer;
-        transition: color, transform .5s;
+        transition: color .5s, transform .5s;
     }
 
-    nav ul li:hover {
+    .nav-menu li:hover {
         color: #744c4a
     }
 
@@ -128,9 +149,17 @@
         background-color: black;
         animation: responsiveNavMenuOpen .5s forwards;
         width: 100vw;
-        top: 10%;
+        top: 149px;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .social-medias-on-menu-list {
+        display: none;
+    }
+
+    .responsive-nav-menu {
+        display: none;
     }
 
     @keyframes responsiveNavMenuOpen {
@@ -139,7 +168,7 @@
         }
 
         to {
-            height: 50vh;
+            height: calc(100vh - 149px);
         }
         
     }
@@ -151,6 +180,24 @@
 
         .navbar-responsive-toggler {
             display: flex;
+        }
+
+        
+    }
+
+    @media screen and (max-width: 950px) {
+        ul {
+            gap: 30px;
+        }
+
+        .social-medias-on-root-nav {
+            display: none;
+        }
+
+        .social-medias-on-menu-list {
+            display: flex;
+            margin-top: 40px;
+            font-size: 3vh;
         }
     }
 </style>

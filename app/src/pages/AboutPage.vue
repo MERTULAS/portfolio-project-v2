@@ -207,7 +207,7 @@ When you work with me, you'll find more than just someone who writes code; you'l
         gap: 40px;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .profile-body h1 {
@@ -348,6 +348,10 @@ When you work with me, you'll find more than just someone who writes code; you'l
     @media screen and (max-width: 1725px) {
         .style-thing {
             transform: rotate(90deg);
+        }
+
+        .profile-body {
+            justify-content: center;
         }
     }
 

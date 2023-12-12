@@ -38,6 +38,13 @@
 
 </script>
 <style scoped>
+    ul {
+        display: flex;
+        gap: 40px;
+        font-size: 2vh;
+        z-index: 6;
+    }
+
     a {
         color: #B79492;
         transition: .5 color;
@@ -46,5 +53,11 @@
     a:hover {
         background-color: transparent;
         color: #744c4a;
+    }
+
+    @media screen and (max-width: 1000px) {
+        ul {
+            gap: 30px;
+        }
     }
 </style>
