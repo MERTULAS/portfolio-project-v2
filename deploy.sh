@@ -12,6 +12,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:MERTULAS/portfolio-project-v2.git master:gh-pages
+git push -f https://github.com/MERTULAS/portfolio-project-v2.git master:gh-pages
 
 cd -
