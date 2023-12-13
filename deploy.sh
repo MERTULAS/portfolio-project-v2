@@ -1,17 +1,28 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
+# Exit on error
 set -e
 
+# Build the project
 npm run build
 
+# Navigate into the build output directory
 cd dist
 
-echo 'www.mertulas.dev' > CNAME
-
+# Initialize a new Git repository
 git init
+
+# Configure Git for deployment
+git config user.name "MERTULAS"
+git config user.email "h.mert.ulas@gmail.com"
+
+# Commit the "dist" directory contents
 git add -A
-git commit -m 'deploy'
+git commit -m "Deploy to github page"
 
-git push -f https://github.com/MERTULAS/portfolio-project-v2.git master:gh-pages
+# Push to the "gh-pages" branch (make sure to replace "<username>" with your GitHub username)
+git push -f git@github.com:MERTULAS/portfolio-project-v2.git master:gh-pages
 
-cd -
+# Cleanup: Remove the temporary Git repository and the "dist" directory
+cd ..
+rm -rf dist .git
