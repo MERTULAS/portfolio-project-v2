@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as _}from"./index-ba4221f6.js";const c={};function n(o,a){return t(),_("h1",null," This page is under development. ")}const r=e(c,[["render",n],["__scopeId","data-v-e77d14e8"]]);export{r as default};
