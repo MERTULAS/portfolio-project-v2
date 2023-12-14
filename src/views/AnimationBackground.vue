@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-    import { onMounted, onUpdated } from "vue";
+    import { onMounted, onBeforeUnmount } from "vue";
 
     class Star {
         constructor(x, y, z) {
@@ -93,21 +93,32 @@
         window.space = new Space(ctx);
     }
 
+    function mouseMoveHandler (e) {
+        window.space.originPoint.x = e.x;
+        window.space.originPoint.y = e.y;
+    }
+
     onMounted(() => {
         defineCanvas();
 
-        console.log('mounted')
-
-        addEventListener('mousemove', (e) => {
-            window.space.originPoint.x = e.x;
-            window.space.originPoint.y = e.y;
-        })
+        addEventListener('mousemove', mouseMoveHandler);
+        addEventListener('resize', defineCanvas);
 
         spaceAnimation();
     })
 
-    window.onresize = () => defineCanvas();
+    onBeforeUnmount(() => {
+        removeEventListener('mousemove', mouseMoveHandler);
+        removeEventListener('resize', defineCanvas);
+    })
 
+    // const beforeRouteLeaveHandler = (to, from, next) => {
+    //   removeEventListener('mousemove', mouseMoveHandler);
+    //   next();
+    // };
+
+    // onBeforeRouteLeave(beforeRouteLeaveHandler)
+    
 </script>
 
 <style>
