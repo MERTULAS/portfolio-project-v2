@@ -43,11 +43,6 @@
         }
     );
 
-    watch(
-        () => navbarToggler.value,
-        (val, old) => console.log(val, old)
-    )
-
     const menu = [
         {
             title: 'Home',
