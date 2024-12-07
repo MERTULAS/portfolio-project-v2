@@ -30,6 +30,24 @@
                     <div id="curved-corner-topright"></div>
                 </div>
             </div>
+
+            <!-- Yeni çalışma geçmişi bölümü -->
+            <div class="work-history">
+                <h1><span>Work Experience</span></h1>
+                <div class="timeline">
+                    <div v-for="job in character.working_history" :key="job.company" class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="job-header">
+                                <h3>{{ job.position }}</h3>
+                                <span class="company">{{ job.company }}</span>
+                                <span class="period">{{ job.period }}</span>
+                            </div>
+                            <p class="job-description">{{ job.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <svg class="about-me-svg-anim" viewBox="0 0 2018 1453" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_f_126_424)">
                     <path d="M895.28 264.44C918.916 407.786 205 365.94 337.699 567.404M895.28 264.44C1329.53 234.072 1608.78 111.686 1723.2 343.44M895.28 264.44L995.199 496.44M337.699 567.404C891.668 492.376 1827.2 819.94 1283.8 964.911M337.699 567.404L205 879.723M1283.8 964.911C1873.7 1283.94 1886.03 837.71 1723.2 343.44M1283.8 964.911L1139.11 1247.44M1723.2 343.44L1739.61 657.297M995.199 496.44C644.899 568.46 1321.2 1086.44 205 879.723M995.199 496.44C1238.45 292.38 1446.19 370.992 1739.61 657.297M205 879.723C1066.7 1150.44 -171.39 1177.44 1139.11 1247.44M1139.11 1247.44C1144.36 629.211 1344.62 269.843 1739.61 657.297" stroke="white" stroke-width="10" stroke-linejoin="round"/>
@@ -371,6 +389,103 @@ When you work with me, you'll find more than just someone who writes code; you'l
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: .5;
+        }
+    }
+
+    /* Yeni çalışma geçmişi stilleri */
+    .work-history {
+        flex-basis: 100%;
+        margin-top: 40px;
+    }
+
+    .timeline {
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background: #744c4a;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 40px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #744c4a;
+        border: 2px solid rgb(44, 44, 44);
+    }
+
+    .timeline-content {
+        background: rgba(100, 100, 100, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .job-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: baseline;
+        margin-bottom: 15px;
+    }
+
+    .job-header h3 {
+        font-size: 24px;
+        margin: 0;
+        color: #fff;
+        flex-basis: 100%;
+    }
+
+    .company {
+        font-weight: bold;
+        color: #744c4a;
+    }
+
+    .period {
+        color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+    }
+
+    .job-description {
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: justify;
+    }
+
+    @media screen and (max-width: 768px) {
+        .timeline::before {
+            left: 15px;
+        }
+
+        .timeline-item {
+            padding-left: 45px;
+        }
+
+        .job-header {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .period {
+            margin-left: 0;
         }
     }
 </style>
