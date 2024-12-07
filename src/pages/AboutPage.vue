@@ -113,9 +113,18 @@ When you work with me, you'll find more than just someone who writes code; you'l
         },
         working_history: [
             {
-                company: 'Huawei R&D',
+                company: 'Kartaca Software',
                 company_logo: '',
-                period: '', 
+                period: '05.2024 - Present',
+                position: 'Frontend Developer',
+                description: 'I am currently working as a Frontend Developer at Kartaca Software. I am responsible for developing and maintaining the company\'s web applications using React.js and Next.js. I am also responsible for developing and maintaining the company\'s projects.'
+            },
+            {
+                company: 'Huawei Technologies R&D',
+                company_logo: '',
+                period: '05.2021 - 05.2024', 
+                position: 'Software Engineer',
+                description: 'I was working as a Software Engineer at Huawei Technologies R&D. I was responsible for developing and maintaining the company\'s web applications using Python and JavaScript. As a framework, I used Vue.js, React.js, Next.js, Django, FastAPI.'
             }
         ]
     }
