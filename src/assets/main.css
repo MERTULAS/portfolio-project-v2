@@ -11,9 +11,14 @@ ul {
   list-style: none;
 }
 
-#app {
+body {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+}
+
+#app {
+  width: 100%;
+  min-height: 100%;
   margin: 0 auto;
   font-weight: normal;
 }
