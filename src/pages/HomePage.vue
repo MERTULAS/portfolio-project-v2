@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue'; 
 import { useRouter } from 'vue-router'
 import AnimationBackground from '../views/AnimationBackground.vue';
 
@@ -40,8 +40,18 @@ function menuTransformStyleUpdate(x, y) {
   return `rotateX(${x}deg) rotateY(${y}deg)`;
 }
 
+const isRealMobileDevice = ref(false);
+
+function checkIfRealMobileDevice() {
+  const userAgent = navigator.userAgent.toLowerCase();
+  const mobileKeywords = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+  
+  isRealMobileDevice.value = mobileKeywords.test(userAgent);
+}
 
 onMounted(() => {
+  checkIfRealMobileDevice();
+  
   const menuElement = document.querySelector('.main-menu');
   const menuElementContainer = document.querySelector('.main-menu-wrapper');
 
@@ -93,7 +103,7 @@ onMounted(() => {
         <li v-for="menuItem in mainMenu" :key="menuItem.title">{{ menuItem.title }}</li>
       </ul>
     </nav>
-    <AnimationBackground />
+    <AnimationBackground v-if="!isRealMobileDevice" />
   </main>
 </template>
 
