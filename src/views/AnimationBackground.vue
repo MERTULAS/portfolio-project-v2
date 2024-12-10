@@ -11,17 +11,22 @@
             this.x = x;
             this.y = y;
             this.z = z;
+            this.speed = Math.random() * .001;
         }
     }
 
     class Space {
         constructor(ctx) {
             this.ctx = ctx;
-            this.stars = Array.from({ length: 200 }, 
-                () => new Star(Math.random() * innerWidth, Math.random() * innerHeight, Math.random())
+            this.stars = Array.from({ length: 800 }, 
+                () => new Star(
+                    Math.random() * innerWidth - innerWidth/2, 
+                    Math.random() * innerHeight - innerHeight/2,
+                    Math.random() * 3
+                )
             );
             
-            this.constantStars = Array.from({ length: 200 }, 
+            this.constantStars = Array.from({ length: 50 }, 
                 () => new Star(Math.random() * innerWidth, Math.random() * innerHeight, Math.random())
             );
 
@@ -35,18 +40,23 @@
         }
 
         #calculateMoveStep (star) {
-            const xDiff = star.x - this.originPoint.x;
-            const yDiff = star.y - this.originPoint.y;
-            let angle = Math.atan2(yDiff, xDiff);
-            // angle += angle < 0 ? 360 : 0
-            star.x += Math.cos(angle) * .5;
-            star.y += Math.sin(angle) * .5; 
-            if (star.x > innerWidth || star.x < 0 || star.y > innerHeight || star.y < 0) { 
-                star.x = (this.originPoint.x) - 100 + Math.random() * 200;
-                star.y =  (this.originPoint.y) - 100 + Math.random() * 200; 
-                // star.z = 1;
+            star.z -= star.speed;
+            
+            if (star.z < 0) {
+                star.z = Math.random() * 3;
+                star.x = (Math.random() * innerWidth - innerWidth/2);
+                star.y = (Math.random() * innerHeight - innerHeight/2);
             }
-            // star.z += 0.01;
+            
+            let scale = 1 / star.z;
+            
+            let targetX = this.originPoint.x - innerWidth/2;
+            let targetY = this.originPoint.y - innerHeight/2;
+            
+            let x = (star.x + targetX * star.z * 0.1) * scale + innerWidth/2;
+            let y = (star.y + targetY * star.z * 0.1) * scale + innerHeight/2;
+            
+            return { x, y, scale };
         }
 
         update() {
@@ -57,25 +67,16 @@
         }
 
         #draw() {
-            this.ctx.fillStyle = 'rgba(0, 0, 0, .7)';
+            this.ctx.fillStyle = 'rgba(0, 0, 0, .8)';
             this.ctx.fillRect(0, 0, innerWidth, innerHeight);
-            this.hue = this.hue > 360 ? 0 : this.hue + .5;
-            this.ctx.fillStyle = `hsl(${this.hue}, 100%, 50%)`;
-            this.stars.forEach(star => {
-                this.ctx.beginPath();
-                this.ctx.arc(star.x, star.y, star.z, 0, Math.PI * 2);
-                this.ctx.fill();
-            })
-
             
-            this.lightness = this.lightness > 99 ? 30 : this.lightness;
-            this.lightness += .35
-            this.ctx.fillStyle = `hsl(256, 0%, ${this.lightness}%)`;
-            this.constantStars.forEach(star => {
+            this.stars.forEach(star => {
+                const pos = this.#calculateMoveStep(star);
                 this.ctx.beginPath();
-                this.ctx.arc(star.x, star.y, star.z, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(255, 255, 255, ${1 - star.z * 0.3})`;
+                this.ctx.arc(pos.x, pos.y, pos.scale * .5, 0, Math.PI * 2);
                 this.ctx.fill();
-            })
+            });
         }
 
     }
@@ -125,7 +126,7 @@
     #background-canvas {
         width: 100vw;
         height: 100vh;
-        background: radial-gradient(ellipse at center, #242938, #000 100%);
+        background: radial-gradient(ellipse at center, #092e9c, #d8d3d3 100%);
         position: absolute;
         top: 0;
         left: 0;

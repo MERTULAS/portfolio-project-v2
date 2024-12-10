@@ -7,10 +7,6 @@ const router = useRouter();
 
 const mainMenu = [
   {
-    title: 'Home',
-    path: '/'
-  },
-  {
     title: 'Projects',
     path: '/projects'
   },
