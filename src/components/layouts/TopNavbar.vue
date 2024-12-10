@@ -168,7 +168,7 @@
         
     }
 
-    @media screen and (max-width: 1800px) {
+    @media screen and (max-width: 1160px) {
         .nav-menu {
             display: none;
         }

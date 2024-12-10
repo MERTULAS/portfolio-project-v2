@@ -1,5 +1,5 @@
 <template>
-    <main class="cyberpunk">
+    <main class="page about-page">
         <div class="cyberpunk__glitch-overlay"></div>
         <div class="cyberpunk__container">
             <!-- Sol Panel - Profil -->
@@ -177,11 +177,12 @@ function stringParser (str) {
 </script>
 
 <style scoped>
-.cyberpunk {
+.about-page {
     /* background: #0a0a0a; */
     color: #ffffff;
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 
 .cyberpunk__glitch-overlay {
