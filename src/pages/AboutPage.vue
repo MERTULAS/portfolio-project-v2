@@ -1,76 +1,96 @@
 <template>
-    <main class="page about-page">
-        <div class="page-wrapper">
-            <!-- <div class="about-picture">
-                <img class="profile-picture" :src="character.image" />
-                <div id="badge-ribbon">{{ character.level() }}</div>
-            </div> -->
-            <div class="profile-body">
-                <div class="profile-info">
-                    <h1> About </h1>
-                    <!-- <h1>{{ character.class }}</h1> -->
-                    <div class="about-text">
-                        <p v-for="text in stringParser(character.info)"> {{ text }}</p>
+    <main class="cyberpunk">
+        <div class="cyberpunk__glitch-overlay"></div>
+        
+        <div class="cyberpunk__container">
+            <!-- Sol Panel - Profil -->
+            <section class="cyberpunk__profile">
+                <div class="profile-header">
+                    <div class="profile-header__level">
+                        <div class="level-ring"></div>
+                        <span class="level-text">{{ character.level() }}</span>
+                    </div>
+                    <div class="profile-header__title">
+                        <h1 class="glitch-text" data-text="MERT ULAS">{{ character.id }}</h1>
+                        <span class="profile-header__class">{{ character.class }}</span>
                     </div>
                 </div>
-                <div class="profile-skills">
-                    <h1><span>Technology Stack</span></h1>
-                    <ul class="skills">
-                        <li v-for="weapon of character.skills.weapons" :key="weapon.icon" :title="weapon.name" v-html="weapon.icon"></li>
-                    </ul>
-                    <h1><span>Knowledge Areas</span></h1>
-                    <ul class="skills">
-                        <li v-for="skill of character.skills.skills" :key="skill.name" :title="skill.name">{{ skill.name }}</li>
-                    </ul>
-                </div>
-                <div class="style-thing">
-                    <div id="curved-corner-bottomleft"></div>
-                    <div id="curved-corner-bottomright"></div>
-                    <div id="curved-corner-topleft"></div>
-                    <div id="curved-corner-topright"></div>
-                </div>
-            </div>
 
-            <!-- Yeni çalışma geçmişi bölümü -->
-            <div class="work-history">
-                <h1><span>Work Experience</span></h1>
-                <div class="timeline">
-                    <div v-for="job in character.working_history" :key="job.company" class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="job-header">
-                                <h3>{{ job.position }}</h3>
-                                <span class="company">{{ job.company }}</span>
-                                <span class="period">{{ job.period }}</span>
+                <div class="neo-panel profile-info">
+                    <h2 class="neo-panel__title">
+                        <span class="neo-panel__icon">⟁</span>
+                        AGENT DATA
+                    </h2>
+                    <div class="profile-info__content">
+                        <p v-for="text in stringParser(character.info)" 
+                           class="profile-info__text">{{ text }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sağ Panel - Skills & Missions -->
+            <section class="cyberpunk__content">
+                <!-- Tech Skills -->
+                <div class="neo-panel skills-panel">
+                    <h2 class="neo-panel__title">
+                        <span class="neo-panel__icon">⟰</span>
+                        TECH SKILLS
+                    </h2>
+                    <div class="skills-grid">
+                        <div v-for="weapon in character.skills.weapons" 
+                             :key="weapon.name"
+                             class="skill-card"
+                             :title="weapon.name">
+                            <div class="skill-card__icon" v-html="weapon.icon"></div>
+                            <div class="skill-card__info">
+                                <span class="skill-card__name">{{ weapon.name }}</span>
+                             <!--   <div class="skill-card__power">
+                                    <div class="power-bar">
+                                        <div class="power-bar__fill"></div>
+                                        <div class="power-bar__glitch"></div>
+                                    </div>
+                                </div>
+                            -->
                             </div>
-                            <p class="job-description">{{ job.description }}</p>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <svg class="about-me-svg-anim" viewBox="0 0 2018 1453" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_f_126_424)">
-                    <path d="M895.28 264.44C918.916 407.786 205 365.94 337.699 567.404M895.28 264.44C1329.53 234.072 1608.78 111.686 1723.2 343.44M895.28 264.44L995.199 496.44M337.699 567.404C891.668 492.376 1827.2 819.94 1283.8 964.911M337.699 567.404L205 879.723M1283.8 964.911C1873.7 1283.94 1886.03 837.71 1723.2 343.44M1283.8 964.911L1139.11 1247.44M1723.2 343.44L1739.61 657.297M995.199 496.44C644.899 568.46 1321.2 1086.44 205 879.723M995.199 496.44C1238.45 292.38 1446.19 370.992 1739.61 657.297M205 879.723C1066.7 1150.44 -171.39 1177.44 1139.11 1247.44M1139.11 1247.44C1144.36 629.211 1344.62 269.843 1739.61 657.297" stroke="white" stroke-width="10" stroke-linejoin="round"/>
-                </g>
-                <defs>
-                    <filter id="filter0_f_126_424" x="0" y="0" width="2017.74" height="1452.44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                    <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_126_424"/>
-                    </filter>
-                </defs>
-            </svg>
+                <!-- Mission Log -->
+                <div class="neo-panel mission-panel">
+                    <h2 class="neo-panel__title">
+                        <span class="neo-panel__icon">⟲</span>
+                        MISSION LOG
+                    </h2>
+                    <div class="mission-timeline">
+                        <div v-for="job in character.working_history" 
+                             :key="job.company" 
+                             class="mission-card">
+                            <div class="mission-card__header">
+                                <div class="mission-card__title">
+                                    <h3>{{ job.position }}</h3>
+                                    <span class="mission-card__company">{{ job.company }}</span>
+                                </div>
+                                <span class="mission-card__period">{{ job.period }}</span>
+                            </div>
+                            <p class="mission-card__desc">{{ job.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
+        <AnimationBackground />
     </main>
-
 </template>
+
 <script setup>
     const character = {
         id: 'MERT ULAS',
         class: 'Software Developer',
         born_year: 1996,
+        software_development_started: 2020,
         level() {
-            return new Date().getFullYear() - this.born_year
+            return new Date().getFullYear() - this.software_development_started
         },
         image: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg',
         info: `Hello, I'm Mert Ulas, a software engineer, and a creative web developer. Focused on my professional career, I am an experienced frontend specialist who continues to pursue my passion for creating user-friendly web applications by combining aesthetics and functionality. Equipped with advanced skills in JavaScript, React JS, Vue JS, and CSS, I aim to reflect my passion for user interface design in my projects, creating unique and compelling user experiences.
@@ -80,7 +100,7 @@ When you work with me, you'll find more than just someone who writes code; you'l
             weapons: [
                 {
                     name: 'Next JS',
-                    icon: `<svg width="96" height="58" viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.652 15.1052H40.7584V16.5444H24.3117V27.3757H39.7777V28.8148H24.3117V40.7066H40.947V42.1457H22.652V15.1052ZM42.3805 15.1052H44.3043L52.8294 26.997L61.5432 15.1052L73.3953 0L53.9234 28.2468L63.9574 42.1457H61.9581L52.8294 29.4965L43.663 42.1457H41.7015L51.8109 28.2468L42.3805 15.1052ZM64.6741 16.5444V15.1052H85.3079V16.5444H75.802V42.1457H74.1423V16.5444H64.6741ZM0 15.1052H2.0747L30.6836 57.9158L18.8609 42.1457L1.7352 17.1503L1.65976 42.1457H0L0 15.1052ZM85.1407 40.2723C84.8016 40.2723 84.5473 40.0095 84.5473 39.67C84.5473 39.3304 84.8016 39.0677 85.1407 39.0677C85.4838 39.0677 85.7341 39.3304 85.7341 39.67C85.7341 40.0095 85.4838 40.2723 85.1407 40.2723ZM86.7716 38.6877H87.6597C87.6718 39.1688 88.0231 39.4921 88.5398 39.4921C89.1171 39.4921 89.444 39.1445 89.444 38.4937V34.3707H90.3483V38.4978C90.3483 39.67 89.6701 40.345 88.5479 40.345C87.4942 40.345 86.7716 39.6902 86.7716 38.6877ZM91.5311 38.6352H92.4273C92.504 39.189 93.045 39.5406 93.8241 39.5406C94.5507 39.5406 95.0836 39.1647 95.0836 38.6473C95.0836 38.2027 94.7445 37.9359 93.9735 37.754L93.2226 37.5721C92.169 37.3255 91.6886 36.8162 91.6886 35.9593C91.6886 34.9204 92.5363 34.2292 93.808 34.2292C94.9908 34.2292 95.8547 34.9204 95.9071 35.9027H95.0271C94.9423 35.3651 94.474 35.0296 93.7958 35.0296C93.0813 35.0296 92.605 35.3732 92.605 35.8986C92.605 36.315 92.9118 36.5535 93.6707 36.7313L94.3126 36.889C95.5075 37.1679 96 37.6529 96 38.5301C96 39.6457 95.1361 40.345 93.7555 40.345C92.4637 40.345 91.5957 39.6781 91.5311 38.6352Z" fill="black"/></svg>`
+                    icon: `<svg width="96" height="58" viewBox="0 0 96 58" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.652 15.1052H40.7584V16.5444H24.3117V27.3757H39.7777V28.8148H24.3117V40.7066H40.947V42.1457H22.652V15.1052ZM42.3805 15.1052H44.3043L52.8294 26.997L61.5432 15.1052L73.3953 0L53.9234 28.2468L63.9574 42.1457H61.9581L52.8294 29.4965L43.663 42.1457H41.7015L51.8109 28.2468L42.3805 15.1052ZM64.6741 16.5444V15.1052H85.3079V16.5444H75.802V42.1457H74.1423V16.5444H64.6741ZM0 15.1052H2.0747L30.6836 57.9158L18.8609 42.1457L1.7352 17.1503L1.65976 42.1457H0L0 15.1052ZM85.1407 40.2723C84.8016 40.2723 84.5473 40.0095 84.5473 39.67C84.5473 39.3304 84.8016 39.0677 85.1407 39.0677C85.4838 39.0677 85.7341 39.3304 85.7341 39.67C85.7341 40.0095 85.4838 40.2723 85.1407 40.2723ZM86.7716 38.6877H87.6597C87.6718 39.1688 88.0231 39.4921 88.5398 39.4921C89.1171 39.4921 89.444 39.1445 89.444 38.4937V34.3707H90.3483V38.4978C90.3483 39.67 89.6701 40.345 88.5479 40.345C87.4942 40.345 86.7716 39.6902 86.7716 38.6877ZM91.5311 38.6352H92.4273C92.504 39.189 93.045 39.5406 93.8241 39.5406C94.5507 39.5406 95.0836 39.1647 95.0836 38.6473C95.0836 38.2027 94.7445 37.9359 93.9735 37.754L93.2226 37.5721C92.169 37.3255 91.6886 36.8162 91.6886 35.9593C91.6886 34.9204 92.5363 34.2292 93.808 34.2292C94.9908 34.2292 95.8547 34.9204 95.9071 35.9027H95.0271C94.9423 35.3651 94.474 35.0296 93.7958 35.0296C93.0813 35.0296 92.605 35.3732 92.605 35.8986C92.605 36.315 92.9118 36.5535 93.6707 36.7313L94.3126 36.889C95.5075 37.1679 96 37.6529 96 38.5301C96 39.6457 95.1361 40.345 93.7555 40.345C92.4637 40.345 91.5957 39.6781 91.5311 38.6352Z" fill="white"/></svg>`
                 },
                 {
                     name: 'React JS',
@@ -152,340 +172,356 @@ When you work with me, you'll find more than just someone who writes code; you'l
     }
 
 </script>
+
 <style scoped>
-    .about-page {
-        position: relative;
-    }
+.cyberpunk {
+    background: #0a0a0a;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
 
-    .about-me-svg-anim {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        /* transform: translateY(50%); */
-        stroke-dasharray: 1410;
-        stroke-dashoffset: 1410;
-        animation: drawLine 3s infinite alternate;
-        z-index: -1;
-    }
+.cyberpunk__glitch-overlay {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        rgba(202, 83, 83, 0.03) 0px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline 8s linear infinite;
+}
 
-    @keyframes drawLine {
-    to {
-        stroke-dashoffset: 0;
+.cyberpunk__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Profile Section */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(202, 83, 83, 0.1);
+    border-left: 4px solid rgba(202, 83, 83, 0.9);
+    position: relative;
+}
+
+.profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 4px;
+    height: 100%;
+    background: rgba(202, 83, 83, 0.9);
+    animation: glowBar 2s ease-in-out infinite;
+}
+
+.profile-header__level {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(202, 83, 83, 0.9);
+    border-radius: 50%;
+    animation: rotate 4s linear infinite;
+}
+
+.level-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(202, 83, 83, 0.9);
+}
+
+/* Neo Panels */
+.neo-panel {
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(202, 83, 83, 0.3);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.neo-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(202, 83, 83, 0.9),
+        transparent
+    );
+    animation: scanGlow 2s linear infinite;
+}
+
+.neo-panel__title {
+    font-size: 1.2rem;
+    color: rgba(202, 83, 83, 0.9);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 0 10px rgba(202, 83, 83, 0.5);
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.skill-card {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 1.25rem;
+    border: 1px solid rgba(202, 83, 83, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 80px;
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(202, 83, 83, 0.9);
+    box-shadow: 0 0 20px rgba(202, 83, 83, 0.2);
+}
+
+.skill-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(202, 83, 83, 0.1),
+        transparent
+    );
+    animation: glowSweep 1s ease-in-out;
+}
+
+.skill-card__icon {
+    min-width: 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 5px rgba(202, 83, 83, 0.5));
+}
+
+.skill-card__icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.skill-card__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.skill-card__name {
+    display: block;
+    font-size: 1.1rem;
+    color: rgba(202, 83, 83, 0.9);
+}
+
+.power-bar {
+    height: 4px;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.power-bar__fill {
+    height: 100%;
+    width: 75%;
+    background: rgba(202, 83, 83, 0.9);
+    animation: powerPulse 2s ease-in-out infinite;
+}
+
+.power-bar__glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(202, 83, 83, 0.9);
+    opacity: 0;
+    animation: powerGlitch 3s ease-in-out infinite;
+}
+
+/* Mission Timeline */
+.mission-timeline {
+    display: grid;
+    gap: 1rem;
+}
+
+.mission-card {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 1rem;
+    border-left: 3px solid rgba(202, 83, 83, 0.9);
+    position: relative;
+}
+
+.mission-card::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: rgba(202, 83, 83, 0.9);
+    animation: glowBar 2s ease-in-out infinite;
+}
+
+.mission-card__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.mission-card__period {
+    color: rgba(202, 83, 83, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
     }
 }
 
-    .page-wrapper {
-        width: 80vw;
-        perspective: 1000px;
+@keyframes glowBar {
+    0%, 100% {
+        opacity: 0.5;
     }
-
-    .page-wrapper:hover .profile-picture {
-        transform: skew(10deg);
+    50% {
+        opacity: 1;
     }
+}
 
-    /* .about-picture {
-        display: flex;
+@keyframes powerPulse {
+    0%, 100% {
+        opacity: 0.8;
     }
-
-    .profile-picture {
-        width: 350px;
-        height: 350px;
-        mix-blend-mode: hard-light;
-        transform: translate(-25%, -25%);
-        border-radius: 15px;
-        transition: .5s transform;
-    } */
-
-    /* #badge-ribbon {
-      position: relative;
-      background: red;
-      display: flex;
-      font-size: 50px;
-      align-items: center;
-      justify-content: center;
-      z-index: 4;
-      height: 100px;
-      width: 100px;
-      border-radius: 50%;
+    50% {
+        opacity: 1;
     }
+}
 
-    #badge-ribbon:before,
-    #badge-ribbon:after {
-      content: '';
-      position: absolute;
-      border-bottom: 70px solid red;
-      border-left: 40px solid transparent;
-      border-right: 40px solid transparent;
-      top: 70px;
-      left: -10px;
-      z-index: -1;
-      transform: rotate(-140deg);
+@keyframes powerGlitch {
+    0%, 100% {
+        opacity: 0;
+        transform: translateX(-100%);
     }
-
-    #badge-ribbon:after {
-      left: auto;
-      right: -10px;
-      transform: rotate(140deg);
-    } */
-
-    .profile-body {
-        display: flex;
-        gap: 40px;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
+    10%, 90% {
+        opacity: 0;
     }
-
-    .profile-body h1 {
-        margin: 5px 0;
-    }
-
-    .profile-info h1:not(.about-text) {
-        font-size: 40px;
-    }
-
-    .about-text {
-        margin-top: 25px;
-        font-size: 20px;
-    }
-
-    .about-text p {
-        margin: 30px 0;
-        text-align: justify;
-        /* text-indent: 10px; */
-    }
-
-    h1 span {
-        background: rgb(44, 44, 44);
-        width: fit-content;
-        position: relative;
-        margin-right: 40px;
-        padding: 0 10px;
-    }
-
-    h1 span::after {
-        content: '';
-        top: 0;
-        right: 0;
+    50% {
+        opacity: 0.5;
         transform: translateX(100%);
-        position: absolute;
-        border-bottom: 40px solid rgb(44, 44, 44);
-        border-right: 40px solid transparent;
     }
+}
 
-    h1 span::before {
-        content: '';
-        bottom: -3px;
-        left: 0;
-        width: calc(100% + 39px);
-        position: absolute;
-        background-color: #744c4a;
-        height: 3px;
-        z-index: -1;
+@keyframes glowSweep {
+    0% {
+        transform: translateX(-100%);
     }
-
-    .profile-body div {
-        flex-basis: 600px;
+    100% {
+        transform: translateX(100%);
     }
+}
 
-    .skills {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin: 20px 0 30px;
-        justify-content: center;
+@keyframes scanGlow {
+    0% {
+        transform: translateX(-100%);
     }
-    .skills li {
-        background-color: rgba(100, 100, 100, .6);
-        width: fit-content;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        color: black;
-        font-size: 24px;
-        /* width: 72px;
-        height: 72px;  */
-        
-        text-wrap: nowrap;
-        display: flex;
-        justify-content: center;
-        flex: 1;
-        box-shadow: 0 0 5px 5px rgba(0, 0, 0, .1);
+    100% {
+        transform: translateX(100%);
     }
+}
 
-    /* .skills:last-child li {
-        flex: 1;
-        text-wrap: nowrap;
-        display: flex;
-        justify-content: center;
-    } */
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .cyberpunk__container {
+        grid-template-columns: 1fr;
+    }
+}
 
-    .style-thing {
-        flex-basis: auto !important;
-        order: 2;
-        /* position: absolute;
-        top: 50%;
-        right: 25%; */
-        transition: all .5s;
+@media (max-width: 768px) {
+    .cyberpunk__container {
+        padding: 1rem;
     }
     
-    #curved-corner-bottomleft,
-    #curved-corner-bottomright,
-    #curved-corner-topleft,
-    #curved-corner-topright {
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        position: relative;
+    .skills-grid {
+        grid-template-columns: 1fr;
     }
-    #curved-corner-bottomleft:before,
-    #curved-corner-bottomright:before,
-    #curved-corner-topleft:before,
-    #curved-corner-topright:before {
-        content: "";
-        display: block;
-        width: 200%;
-        height: 200%;
-        position: absolute;
-        border-radius: 50%;
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
     }
-    #curved-corner-bottomleft:before {
-        bottom: 0;
-        left: 0;
-        box-shadow: -50px 50px 0 0 rgba(100, 100, 100, .9);
+    
+    .skill-card {
+        padding: 1rem;
     }
-    #curved-corner-bottomright:before {
-        bottom: 0;
-        right: 0;
-        box-shadow: 50px 50px 0 0 rgba(255, 0, 0, .4);
+    
+    .skill-card__icon {
+        width: 40px;
+        height: 40px;
     }
-    #curved-corner-topleft:before {
-        top: 0;
-        left: 0;
-        box-shadow: -50px -50px 0 0 rgba(255, 0, 0, .4);
-    }
-    #curved-corner-topright:before {
-        top: 0;
-        right: 0;
-        box-shadow: 50px -50px 00 rgba(100, 100, 100, .9);
-    }
+}
 
-    @media screen and (max-width: 1725px) {
-        .style-thing {
-            transform: rotate(90deg);
-        }
-
-        .profile-body {
-            justify-content: center;
-        }
+@media (max-width: 480px) {
+    .mission-card__header {
+        flex-direction: column;
+        gap: 0.5rem;
     }
-
-    @media screen and (max-width: 1550px) {
-        .style-thing {
-            position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: .5;
-        }
+    
+    .neo-panel {
+        padding: 1rem;
     }
-
-    /* Yeni çalışma geçmişi stilleri */
-    .work-history {
-        flex-basis: 100%;
-        margin-top: 40px;
+    
+    .skill-card__icon {
+        width: 36px;
+        height: 36px;
     }
-
-    .timeline {
-        position: relative;
-        padding: 20px 0;
-    }
-
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 2px;
-        background: #744c4a;
-    }
-
-    .timeline-item {
-        position: relative;
-        padding-left: 40px;
-        margin-bottom: 40px;
-    }
-
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -6px;
-        top: 0;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: #744c4a;
-        border: 2px solid rgb(44, 44, 44);
-    }
-
-    .timeline-content {
-        background: rgba(100, 100, 100, 0.1);
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .job-header {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: baseline;
-        margin-bottom: 15px;
-    }
-
-    .job-header h3 {
-        font-size: 24px;
-        margin: 0;
-        color: #fff;
-        flex-basis: 100%;
-    }
-
-    .company {
-        font-weight: bold;
-        color: #744c4a;
-    }
-
-    .period {
-        color: rgba(255, 255, 255, 0.7);
-        margin-left: auto;
-    }
-
-    .job-description {
-        font-size: 16px;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.9);
-        text-align: justify;
-    }
-
-    @media screen and (max-width: 768px) {
-        .timeline::before {
-            left: 15px;
-        }
-
-        .timeline-item {
-            padding-left: 45px;
-        }
-
-        .job-header {
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .period {
-            margin-left: 0;
-        }
-    }
+}
 </style>
