@@ -11,6 +11,16 @@ export default function MenuAutoCloser() {
     if (checkbox && checkbox.checked) {
       checkbox.checked = false;
     }
+
+    const navbarDesktopMenu = document.querySelector('.navbar-desktop-menu') as HTMLInputElement;
+    if (navbarDesktopMenu && pathname === "/" ) {
+        navbarDesktopMenu.classList.add('display-none');
+    } else {
+      if (navbarDesktopMenu) {
+        navbarDesktopMenu.classList.remove('display-none');
+      }
+    }
+
   }, [pathname]);
 
 

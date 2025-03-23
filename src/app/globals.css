@@ -21,6 +21,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -29,6 +36,12 @@ body {
   font-family: 'Crimson Pro', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 * {

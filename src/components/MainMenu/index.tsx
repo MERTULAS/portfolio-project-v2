@@ -1,19 +1,12 @@
 import React from 'react'
-import "./mainMenu.scss";
-import menu from "@/data/menu.json";
-import Link from 'next/link';
+import MainMenuContent from './MainMenuContent';
+import MainMenuAnimationProvider from './MainMenuAnimationProvider';
 
 const MainMenu = () => {
   return (
-    <div className="main-menu">
-      <ul>
-        {menu.slice(1).map((item) => (
-          <li key={item.title}>
-            <Link href={item.link}>{item.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <MainMenuAnimationProvider>
+      <MainMenuContent />
+    </MainMenuAnimationProvider>
   )
 }
 

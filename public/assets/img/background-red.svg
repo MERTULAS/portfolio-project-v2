@@ -1,0 +1,15 @@
+<svg class="bg-red-clouds" fill="none" viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_f_131_384)">
+        <path
+          d="M750.622 244.466C412.41 421.315 2196.41 1023.86 1663.83 509.38C1131.25 -5.10056 1635.26 227.43 1858.88 211.798C2082.5 196.166 1778.29 910.415 1940.4 647.707C2102.5 384.999 3044 393.994 2387 196.996C1730 -0.00267792 2654.06 1524.99 2256.47 1298C1858.88 1071 2406.15 922.373 1940.4 839.118C1474.64 755.863 2121.44 978.966 1170.22 1199.48C218.999 1420 1351.3 985.612 881.652 615.039C412 244.466 610.52 1640.24 267.01 1169.37C-76.5003 698.495 538 443.997 219.999 322.562C-98.0017 201.126 1088.83 67.6171 750.622 244.466Z"
+          stroke="#FF0000" stroke-width="17" />
+    </g>
+    <defs>
+        <filter id="filter0_f_131_384" x="0.510742" y="0.504883" width="2775.21" height="1479.1"
+          filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur stdDeviation="75" result="effect1_foregroundBlur_131_384" />
+        </filter>
+    </defs>
+ </svg>

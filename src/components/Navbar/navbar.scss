@@ -1,10 +1,9 @@
 nav {
-    padding: 40px;
+    padding: 50px;
     color: #B79492;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: black;
     height: 149px;
 
 
@@ -12,12 +11,17 @@ nav {
         font-size: 3vh;
         line-height: 1;
         z-index: 6;
+        user-select: none;
 
         span {
             line-height: 1;
             font-size: 1.5vh;
             margin-left: 20px;
         }
+    }
+
+    .display-none {
+        display: none;
     }
 
     .nav-menu {
