@@ -1,15 +1,33 @@
 import "@/app/home.scss";
 import MainMenu from "@/components/MainMenu";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mert Ulaş",
+  "jobTitle": "Software Developer",
+  "url": "https://mertulas.dev",
+  "sameAs": [
+    "https://github.com/MERTULAS",
+    "https://www.linkedin.com/in/mert-ulas/",
+    "https://twitter.com/mertulaas"
+  ],
+  "image": "https://mertulas.dev/assets/img/mert-ulas.jpg",
+  "description": "Software Developer",
+  "knowsLanguage": ["Turkish", "English"],
+  "knowsAbout": ["Web Development", "Frontend", "React", "Next.js", "TypeScript", "C++", "C", "Python"]
+};
+
 export default function Home() {
   return (
     <div className="page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
       <div className="bg-clouds">
-        {
-          /*<img src="/assets/img/background-gray.svg" alt="background-gray" width={1000} height={1000} />
-        <img src="/assets/img/background-red.svg" alt="background-red" width={1000} height={1000} />
-        */
-        }
         <svg className="bg-red-clouds" fill="none" viewBox="0 0 2775.21 1479.1" width="100%" height="100%">
           <g filter="url(#filter0_f_red)">
             <path

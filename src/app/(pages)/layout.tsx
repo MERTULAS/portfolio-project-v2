@@ -20,8 +20,45 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "MERT ULAS - Portfolio",
-  description: "This is Mert Ulas's portfolio",
+  title: "MERT ULAS - Home",
+  description: "My portfolio website",
+  keywords: "mert ulaş, yazılım geliştirici, web tasarım, front-end geliştirici, react, next.js, typescript, portfolyo",
+  authors: [{ name: "Mert Ulaş", url: "https://github.com/MERTULAS" }],
+  creator: "Mert Ulaş",
+  publisher: "Mert Ulaş",
+  metadataBase: new URL('https://mertulas.dev'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/',
+    },
+  },
+  openGraph: {
+    title: "Mert Ulaş - Home",
+    description: "My portfolio website",
+    url: 'https://mertulas.dev',
+    siteName: 'Mert Ulaş Portfolio',
+    images: [],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mert Ulaş - Home',
+    description: 'My portfolio website',
+    creator: '@mertulaas',
+    images: [],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/icons/favicon.ico' },
