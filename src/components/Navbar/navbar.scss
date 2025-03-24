@@ -202,6 +202,16 @@ nav {
 
 @media screen and (max-width: 792px) {
     nav {
+        padding: 20px;
+
+        h1 {
+            font-size: 3vh;
+
+            span {
+                margin-left: 10px;
+            }
+        }
+
         .social-media-links {
             display: none;
         }
