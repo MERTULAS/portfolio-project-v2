@@ -1,5 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next';
+import "./projectsPage.scss";
 
 export const metadata: Metadata = {
   title: 'MERT ULAS - Projects',

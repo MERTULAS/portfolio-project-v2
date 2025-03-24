@@ -14,5 +14,9 @@
     {
         "title": "Contact",
         "link": "/contact"
-    }    
+    },
+    {
+        "title": "Docs",
+        "link": "https://docs.mertulas.dev"
+    }     
 ]

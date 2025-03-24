@@ -1,5 +1,5 @@
 import { GithubOutlined } from '@ant-design/icons';
-import { LinkedinOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons';
+import { LinkedinOutlined, YoutubeOutlined, XOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import React from 'react'
 
@@ -15,14 +15,14 @@ const socialMediaLinks = [
         link: "https://www.linkedin.com/in/mert-ulas/"
     },
     {
-        title: "Twitter",
-        icon: <TwitterOutlined />,
-        link: "https://twitter.com/mertulaas"
+        title: "X",
+        icon: <XOutlined />,
+        link: "https://x.com/mertulaas"
     },
     {
         title: "Youtube",
         icon: <YoutubeOutlined />,
-        link: "https://twitter.com/mertulaas"
+        link: "https://www.youtube.com/@mertulas"
     }
 ];
 

@@ -1,6 +1,6 @@
 .main-menu {
     font-size: 6vmax;
-    padding: 6.1vw;
+    padding: 1vw 5.1vw;
     width: fit-content;
     position: relative;
     perspective: 1000px;
@@ -129,7 +129,7 @@
                     }
 
                     60% {
-                        transform: translate(2px, 2px);
+                        transform: translate(2px, 2px) skew(10deg);
                         height: 50%;
                         z-index: -2;
                     }
@@ -159,7 +159,7 @@
                     }
 
                     40% {
-                        transform: translate(5px, -5px);
+                        transform: translate(5px, -5px) skew(-10deg);
                         height: 40%;
                     }
 
