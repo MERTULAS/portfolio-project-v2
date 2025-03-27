@@ -179,8 +179,8 @@ const AboutPage = () => {
                   href="/MERT ULAS CV.pdf"
                   download
                   className="profile-header__cv-button"
-                  title="CV'mi İndir"
-                  aria-label="Mert Ulaş'ın CV'sini İndir"
+                  title="Download MERT ULAS CV"
+                  aria-label="Download MERT ULAS CV"
                 >
                   <svg className="cv-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M12 15.5L7.5 11M12 15.5L16.5 11M12 15.5V4.5M6 19.5H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

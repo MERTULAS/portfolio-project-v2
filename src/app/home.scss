@@ -35,6 +35,15 @@
       stroke-dashoffset: 0;
     }
   }
+
+  #background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
 }
 
 /* Enable hover only on non-touch devices */

@@ -1,5 +1,6 @@
 import "@/app/home.scss";
 import MainMenu from "@/components/MainMenu";
+import SpaceTravelBackground from "@/components/SpaceTravelBackground";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -60,6 +61,7 @@ export default function Home() {
         </svg>
       </div>
       <MainMenu />
+      <SpaceTravelBackground />
     </div>
   );
 }
