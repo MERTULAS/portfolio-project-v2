@@ -1,0 +1,84 @@
+// Renk Paleti
+$space-black: #0a0a0a;
+$deep-blue: rgba(20, 20, 20, 0.9); // $darker-bg ile aynı
+$cyberpunk-red: rgba(202, 83, 83, 0.8); // Daha zarif bir kırmızı tonu
+$cyberpunk-red-light: rgba(202, 83, 83, 0.5); // Daha açık bir ton
+$cyberpunk-red-faint: rgba(202, 83, 83, 0.2); // Daha soluk bir ton
+$star-blue: rgba(255, 255, 255, 0.8);
+$tech-orange: #ff6a00;
+$digital-green: #00ff95;
+$space-white: #ffffff;
+
+// Gölgeler
+$neon-glow: 0 0 10px rgba(255, 255, 255, 0.5);
+$cyber-glow: 0 0 15px rgba(202, 83, 83, 0.3);
+$tech-glow: 0 0 10px rgba(202, 83, 83, 0.3);
+
+// Geçişler
+$fast-transition: all 0.3s ease;
+$medium-transition: all 0.5s ease;
+$slow-transition: all 0.8s ease;
+
+// Z-indeksler
+$z-background: -1;
+$z-content: 1;
+$z-overlay: 10;
+$z-modal: 100;
+
+// Kenar Yuvarlaklığı
+$border-radius-sm: 6px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+
+// Yazı Tipi Ağırlıkları
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Ekran Boyutları
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 992px;
+$large-desktop: 1200px;
+
+
+$primary-color: rgba(202, 83, 83, 0.9);
+$primary-light: rgba(202, 83, 83, 0.7);
+$primary-lighter: rgba(202, 83, 83, 0.5);
+$primary-faint: rgba(202, 83, 83, 0.3);
+$primary-faintest: rgba(202, 83, 83, 0.2);
+$primary-glow: rgba(202, 83, 83, 0.1);
+$primary-trace: rgba(202, 83, 83, 0.03);
+
+$dark-bg: rgba(10, 10, 10, 0.95);
+$darker-bg: rgba(20, 20, 20, 0.9);
+$text-color: #ffffff;
+
+
+@mixin glow-border($position: left, $width: 4px) {
+    border-#{$position}: $width solid $primary-color;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        #{$position}: -$width;
+        top: 0;
+        width: $width;
+        height: 100%;
+        background: $primary-color;
+        animation: glowBar 2s ease-in-out infinite;
+    }
+}
+
+@keyframes scanGlow {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

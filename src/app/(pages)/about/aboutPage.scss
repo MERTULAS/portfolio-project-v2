@@ -1,0 +1,503 @@
+@import '@/styles/variables.scss';
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin card-base {
+  background: $darker-bg;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes glowBar {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes powerPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes powerGlitch {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  10%, 90% { opacity: 0; }
+  50% { 
+    opacity: 0.5;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glowSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(202, 83, 83, 0.2); 
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(202, 83, 83, 0.6); 
+  }
+}
+
+@keyframes glitchEffect {
+  0%, 100% { 
+    clip-path: inset(0 0 0 0); 
+  }
+  5% { 
+    clip-path: inset(0.5% 0 1% 0); 
+  }
+  10% { 
+    clip-path: inset(0 0 0 0); 
+  }
+  15% { 
+    clip-path: inset(0 1% 0.5% 0); 
+  }
+  20% { 
+    clip-path: inset(0 0 0 0); 
+  }
+}
+
+.about-page {
+  /* background: #0a0a0a; */
+  color: $text-color;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.cyberpunk {
+  &__glitch-overlay {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      $primary-trace 0px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline 8s linear infinite;
+  }
+
+  &__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+}
+
+.profile-header {
+  @include flex-align-center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: $primary-glow;
+  @include glow-border(left, 4px);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__level {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    @include flex-center;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 0;
+    }
+  }
+  
+  &__cv-button {
+    top: 0px;
+    right: 0px;
+    background: $darker-bg;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    width: fit-content;
+    height: 40px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(202, 83, 83, 0.2);
+    overflow: hidden;
+    animation: pulseGlow 3s infinite ease-in-out;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $primary-color;
+      opacity: 0.05;
+      z-index: -1;
+      animation: glitchEffect 10s infinite;
+    }
+    
+    &:hover {
+      box-shadow: 0 0 15px rgba(202, 83, 83, 0.5);
+      background: $primary-glow;
+      animation: none;
+      
+      .cv-text {
+        opacity: 1;
+        width: auto;
+        margin-left: 5px;
+      }
+      
+      .cv-icon {
+        animation: glitchEffect 2s infinite;
+      }
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    .cv-icon {
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 3px $primary-color);
+      position: relative;
+      width: 18px;
+      height: 18px;
+      
+      path {
+        stroke: $primary-color;
+        stroke-width: 2;
+      }
+    }
+    
+    .cv-text {
+      overflow: hidden;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      font-weight: bold;
+      text-shadow: 0 0 5px $primary-color;
+    }
+    
+    @media (max-width: 768px) {
+      position: relative;
+      top: 10px;
+      right: 0;
+      margin: 0 auto;
+      width: auto;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transform: none;
+      
+      .cv-text {
+        opacity: 1;
+        width: auto;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.level {
+  &-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid $primary-color;
+    border-radius: 42%;
+    animation: rotate 4s linear infinite;
+  }
+
+  &-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    overflow: hidden;
+    color: $primary-color;
+  }
+}
+
+.neo-panel {
+  background: $dark-bg;
+  border: 1px solid $primary-faint;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      $primary-color,
+      transparent
+    );
+    animation: scanGlow 2s linear infinite;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    color: $primary-color;
+    margin-bottom: 1.5rem;
+    @include flex-align-center;
+    gap: 0.5rem;
+    text-shadow: 0 0 10px $primary-lighter;
+  }
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-card {
+  @include card-base;
+  padding: 1.25rem;
+  border: 1px solid $primary-faintest;
+  @include flex-align-center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  min-height: 80px;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $primary-color;
+    box-shadow: 0 0 20px $primary-faintest;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg,
+        transparent,
+        $primary-glow,
+        transparent
+      );
+      animation: glowSweep 1s ease-in-out;
+    }
+  }
+
+  &__icon {
+    min-width: 48px;
+    width: 48px;
+    height: 48px;
+    @include flex-center;
+    filter: drop-shadow(0 0 5px $primary-lighter);
+
+    @media (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+    }
+
+    @media (max-width: 480px) {
+      width: 36px;
+      height: 36px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    display: block;
+    font-size: 1.1rem;
+    color: $primary-color;
+  }
+}
+
+.power-bar {
+  height: 4px;
+  background: $darker-bg;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  position: relative;
+
+  &__fill {
+    height: 100%;
+    width: 75%;
+    background: $primary-color;
+    animation: powerPulse 2s ease-in-out infinite;
+  }
+
+  &__glitch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $primary-color;
+    opacity: 0;
+    animation: powerGlitch 3s ease-in-out infinite;
+  }
+}
+
+   
+.mission-timeline {
+  display: grid;
+  gap: 1rem;
+}
+
+.mission-card {
+  @include card-base;
+  padding: 1rem;
+  @include glow-border(left, 3px);
+
+  &__header {
+    @include flex-between;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  &__period {
+    color: $primary-light;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+    .cyberpunk__container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .cyberpunk__container {
+        padding: 1rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .skill-card {
+        padding: 1rem;
+    }
+    
+    .skill-card__icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mission-card__header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .neo-panel {
+        padding: 1rem;
+    }
+    
+    .skill-card__icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.profile-info__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

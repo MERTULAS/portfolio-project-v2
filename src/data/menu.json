@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Home",    
+        "link": "/"
+    },
+    {
+        "title": "Projects",
+        "link": "/projects"
+    },
+    {
+        "title": "About",
+        "link": "/about"
+    },
+    {
+        "title": "Contact",
+        "link": "/contact"
+    },
+    {
+        "title": "Docs",
+        "link": "https://docs.mertulas.dev"
+    }     
+]
