@@ -1,8 +1,8 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
   distDir: 'dist',
+  output: 'standalone',
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
@@ -10,4 +10,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig; 
