@@ -17,7 +17,7 @@ const MainMenuContent = () => {
                 {menu.slice(1).map((item) => (
                     <li key={item.title} data-text={item.title}>
                         <div className="glitch-line"></div>
-                        <Link href={item.link}>{item.title}</Link>
+                        <Link href={item.link} target={item.link.includes("http") ? "_blank" : "_self"}>{item.title}</Link>
                     </li>
                 ))}
             </ul>

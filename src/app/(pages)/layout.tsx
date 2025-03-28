@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +21,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "MERT ULAS - Home",
-  description: "My portfolio website",
-  keywords: "mert ulaş, yazılım geliştirici, web tasarım, front-end geliştirici, react, next.js, typescript, portfolyo",
+  title: "MERT ULAS - Home | Software Developer",
+  description: "Mert Ulas's personal portfolio website. Projects built with React, Next.js, TypeScript and many other technologies.",
+  keywords: "mert ulas, software developer, web design, front-end developer, react, next.js, typescript, portfolio",
   authors: [{ name: "Mert Ulaş", url: "https://github.com/MERTULAS" }],
   creator: "Mert Ulaş",
   publisher: "Mert Ulaş",
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mert Ulaş - Home",
-    description: "My portfolio website",
+    title: "Mert Ulaş - Home | Software Developer",
+    description: "Mert Ulas's personal portfolio website. Projects built with React, Next.js, TypeScript and many other technologies.",
     url: 'https://mertulas.dev',
     siteName: 'Mert Ulaş Portfolio',
     images: [],
@@ -44,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mert Ulaş - Home',
-    description: 'My portfolio website',
+    title: 'Mert Ulaş - Home | Software Developer',
+    description: 'Mert Ulas\'s personal portfolio website',
     creator: '@mertulaas',
     images: [],
   },
@@ -76,6 +77,19 @@ export const metadata: Metadata = {
   manifest: '/icons/site.webmanifest',
 };
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Mert Ulaş - Software Developer Portfolio",
+  "url": "https://mertulas.dev",
+  "description": "Mert Ulas's personal portfolio website. Projects built with React, Next.js, TypeScript and many other technologies.",
+  "author": {
+    "@type": "Person",
+    "name": "Mert Ulaş",
+    "url": "https://github.com/MERTULAS"
+  }
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,6 +98,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
+        <Script id="website-schema" type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </Script>
         <Navbar />
         <div className="app-content">
           {children}

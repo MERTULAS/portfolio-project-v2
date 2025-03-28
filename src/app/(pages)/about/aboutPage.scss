@@ -1,14 +1,4 @@
-$primary-color: rgba(202, 83, 83, 0.9);
-$primary-light: rgba(202, 83, 83, 0.7);
-$primary-lighter: rgba(202, 83, 83, 0.5);
-$primary-faint: rgba(202, 83, 83, 0.3);
-$primary-faintest: rgba(202, 83, 83, 0.2);
-$primary-glow: rgba(202, 83, 83, 0.1);
-$primary-trace: rgba(202, 83, 83, 0.03);
-
-$dark-bg: rgba(10, 10, 10, 0.95);
-$darker-bg: rgba(20, 20, 20, 0.9);
-$text-color: #ffffff;
+@import '@/styles/variables.scss';
 
 // Mixins
 @mixin flex-center {
@@ -25,22 +15,6 @@ $text-color: #ffffff;
 @mixin flex-align-center {
   display: flex;
   align-items: center;
-}
-
-@mixin glow-border($position: left, $width: 4px) {
-  border-#{$position}: $width solid $primary-color;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    #{$position}: -$width;
-    top: 0;
-    width: $width;
-    height: 100%;
-    background: $primary-color;
-    animation: glowBar 2s ease-in-out infinite;
-  }
 }
 
 @mixin card-base {
@@ -77,11 +51,6 @@ $text-color: #ffffff;
 }
 
 @keyframes glowSweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes scanGlow {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }

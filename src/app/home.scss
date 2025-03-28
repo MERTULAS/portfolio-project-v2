@@ -10,6 +10,9 @@
 }
 
 .page {
+  display: flex;
+  align-items: center;
+
   svg:not(.bg-red-clouds) path {
     stroke-dasharray: 1410;
     stroke-dashoffset: 1410;

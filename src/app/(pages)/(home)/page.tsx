@@ -1,6 +1,7 @@
 import "@/app/home.scss";
 import MainMenu from "@/components/MainMenu";
 import SpaceTravelBackground from "@/components/SpaceTravelBackground";
+//import TagCloudWrapper from "@/components/TagCloud";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -62,6 +63,7 @@ export default function Home() {
       </div>
       <MainMenu />
       <SpaceTravelBackground />
+      {/* <TagCloudWrapper /> */}
     </div>
   );
 }

@@ -1,0 +1,264 @@
+@import '@/styles/variables';
+
+.project-card {
+  background: $dark-bg;
+  border: 1px solid $primary-faint;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      $primary-color,
+      transparent
+    );
+    animation: scanGlow 2s linear infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba($cyberpunk-red-faint, 0.03) 100%
+    );
+    z-index: -1;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $cyber-glow;
+    border-color: rgba($cyberpunk-red-light, 0.4);
+
+    h3 {
+      color: $cyberpunk-red;
+    }
+    
+    h3::after {
+      width: 80px;
+    }
+    
+  }
+
+  .project-type {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: $cyberpunk-red-faint;
+    padding: 8px;
+    border-radius: $border-radius-sm;
+    font-size: .9rem;
+    font-weight: $font-semibold;
+    color: $space-white;
+    transition: $fast-transition;
+    text-transform: uppercase;
+    border: 1px solid $cyberpunk-red-faint;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.9rem;
+    font-weight: $font-semibold;
+    color: $space-white;
+    transition: $fast-transition;
+    position: relative;
+    word-break: break-word;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: $cyberpunk-red-light;
+      transition: $fast-transition;
+    }
+  }
+
+  p {
+    color: rgba($space-white, 0.8);
+    margin-bottom: 1.4rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .project-card-images {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: $cyberpunk-red-faint $deep-blue;
+    -webkit-overflow-scrolling: touch;
+    flex-grow: 1;
+    padding-bottom: 8px;
+    max-width: 100%;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($deep-blue, 0.3);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $cyberpunk-red-faint;
+      border-radius: 10px;
+    }
+
+    img {
+      height: 180px;
+      object-fit: cover;
+      border-radius: $border-radius-sm;
+      transition: $fast-transition;
+      border: 1px solid rgba($cyberpunk-red-faint, 0.2);
+      max-width: 100%;
+      
+      @media (max-width: $mobile) {
+        height: 140px;
+      }
+      
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: $tech-glow;
+        border-color: $cyberpunk-red-light;
+      }
+    }
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.4rem;
+
+    .tag {
+      font-size: 1rem;
+      padding: 4px 10px;
+      border-radius: $border-radius-sm;
+      background-color: $primary-lighter;
+      color: rgba($space-white, 0.8);
+      border: 1px solid rgba($cyberpunk-red-faint, 0.3);
+      transition: $fast-transition;
+
+      &:hover {
+        color: $space-white;
+        border-color: $cyberpunk-red-light;
+      }
+    }
+  }
+
+  a {
+    margin-top: auto;
+    padding: 0.7rem 1.4rem;
+    border-radius: $border-radius-sm;
+    font-weight: $font-medium;
+    transition: $fast-transition;
+    border: 1px solid $cyberpunk-red-faint;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    background: $primary-lighter;
+    text-align: center;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+      background: rgba($cyberpunk-red-faint, 0.15);
+      transform: translateY(-2px);
+      border-color: $cyberpunk-red;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: $tablet) {
+  .project-card {
+    padding: 1.5rem;
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    .project-card-images {
+      img {
+        height: 160px;
+      }
+    }
+    
+    .project-tags .tag {
+      font-size: 0.75rem;
+    }
+    
+    a {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .project-card {
+    padding: 1.2rem;
+    
+    h3 {
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-card-images {
+      margin-bottom: 1.2rem;
+    }
+    
+    .project-tags {
+      margin-bottom: 1.2rem;
+      
+      .tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+      }
+    }
+    
+    a {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+} 
