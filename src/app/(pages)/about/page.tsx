@@ -4,6 +4,7 @@ import "./aboutPage.scss";
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
+import CVDownloader from '@/components/CVDownloader';
 
 export const metadata: Metadata = {
   title: 'MERT ULAS - About',
@@ -175,18 +176,7 @@ const AboutPage = () => {
                   <h1 id="profile-heading" className="glitch-text" data-text="MERT ULAS">{character.id}</h1>
                   <span className="profile-header__class">{character.class}</span>
                 </div>
-                <Link
-                  href="/MERT ULAS CV.pdf"
-                  download
-                  className="profile-header__cv-button"
-                  title="Download MERT ULAS CV"
-                  aria-label="Download MERT ULAS CV"
-                >
-                  <svg className="cv-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M12 15.5L7.5 11M12 15.5L16.5 11M12 15.5V4.5M6 19.5H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span className="cv-text">CV</span>
-                </Link>
+                <CVDownloader />
               </div>
             </div>
 
@@ -212,7 +202,9 @@ const AboutPage = () => {
               <div className="skills-grid">
                 {character.skills.weapons.map((weapon: any) => (
                   <div key={weapon.name} className="skill-card" title={weapon.name}>
-                    <div className="skill-card__icon" aria-hidden="true" dangerouslySetInnerHTML={{ __html: weapon.icon }}></div>
+                    <div className="skill-card__icon" aria-hidden="true">
+                      <div dangerouslySetInnerHTML={{ __html: weapon.icon }}></div>
+                    </div>
                     <div className="skill-card__info">
                       <span className="skill-card__name">{weapon.name}</span>
                     </div>
