@@ -22,7 +22,7 @@ const socialMediaLinks = [
     {
         title: "Youtube",
         icon: <YoutubeOutlined />,
-        link: "https://www.youtube.com/@mertulas"
+        link: "https://www.youtube.com/@mertulas5967"
     }
 ];
 
