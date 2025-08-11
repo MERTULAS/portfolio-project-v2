@@ -1,9 +1,9 @@
 @import '@/styles/variables';
 
 .project-card {
-  background: $dark-bg;
-  border: 1px solid $primary-faint;
-  padding: 1.5rem;
+  background: linear-gradient(180deg, rgba($space-black, 0.9), rgba($darker-bg, 0.9));
+  border: 1px solid rgba($primary-faint, 0.8);
+  padding: 1.4rem;
   position: relative;
   overflow: hidden;
   height: 100%;
@@ -12,6 +12,8 @@
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
+  border-radius: $border-radius-md;
+  backdrop-filter: blur(4px);
 
   @media (max-width: 480px) {
     padding: 1rem;
@@ -38,8 +40,8 @@
     inset: 0;
     background: linear-gradient(
       to bottom,
-      transparent,
-      rgba($cyberpunk-red-faint, 0.03) 100%
+      rgba($primary-trace, 0.3) 0%,
+      rgba($cyberpunk-red-faint, 0.05) 100%
     );
     z-index: -1;
     opacity: 0.2;
@@ -47,16 +49,16 @@
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     box-shadow: $cyber-glow;
-    border-color: rgba($cyberpunk-red-light, 0.4);
+    border-color: rgba($cyberpunk-red-light, 0.5);
 
     h3 {
       color: $cyberpunk-red;
     }
     
     h3::after {
-      width: 80px;
+      width: 88px;
     }
     
   }
@@ -77,43 +79,153 @@
   }
 
   h3 {
-    font-size: 1.6rem;
-    margin-bottom: 0.9rem;
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.6rem);
+    margin-bottom: 0.8rem;
     font-weight: $font-semibold;
     color: $space-white;
     transition: $fast-transition;
     position: relative;
     word-break: break-word;
+    max-width: 50%;
     
     &::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -6px;
       left: 0;
-      width: 40px;
+      width: 48px;
       height: 2px;
       background: $cyberpunk-red-light;
       transition: $fast-transition;
     }
   }
 
+  .project-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 0.6rem;
+  }
+
+  // Yeni slider/karusel yapısı
+  .media {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1rem;
+
+    .media-viewport {
+      position: relative;
+      overflow: hidden;
+      border-radius: $border-radius-sm;
+      border: 1px solid rgba($cyberpunk-red-faint, 0.25);
+      background: rgba($space-black, 0.4);
+    }
+
+    .media-track {
+      display: flex;
+      will-change: transform;
+      transition: transform 400ms ease;
+    }
+
+    .media-slide {
+      position: relative;
+      flex: 0 0 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(180deg, rgba($deep-blue, 0.3), rgba($deep-blue, 0.2));
+    }
+
+    .nav {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+    }
+
+    .nav-btn {
+      pointer-events: auto;
+      appearance: none;
+      border: 1px solid rgba($cyberpunk-red-faint, 0.5);
+      background: rgba($space-black, 0.45);
+      color: $space-white;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: $fast-transition;
+      backdrop-filter: blur(4px);
+
+      &:hover {
+        transform: translateY(-1px);
+        border-color: $cyberpunk-red-light;
+        background: rgba($space-black, 0.55);
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px $primary-faint;
+      }
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding-top: 2px;
+    }
+
+    .dot {
+      appearance: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba($cyberpunk-red-faint, 0.6);
+      background: rgba($primary-trace, 0.8);
+      cursor: pointer;
+      transition: $fast-transition;
+
+      &.active {
+        background: $cyberpunk-red-light;
+        border-color: $cyberpunk-red-light;
+        transform: scale(1.1);
+      }
+
+      &:hover {
+        border-color: $cyberpunk-red-light;
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px $primary-faint;
+      }
+    }
+  }
+
   p {
-    color: rgba($space-white, 0.8);
-    margin-bottom: 1.4rem;
-    font-size: 1.2rem;
-    line-height: 1.6;
+    color: rgba($space-white, 0.78);
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
   }
 
   .project-card-images {
     display: flex;
     gap: 10px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     overflow-x: auto;
     position: relative;
     scrollbar-width: thin;
     scrollbar-color: $cyberpunk-red-faint $deep-blue;
     -webkit-overflow-scrolling: touch;
-    flex-grow: 1;
+    flex-grow: 0;
     padding-bottom: 8px;
     max-width: 100%;
 
@@ -132,12 +244,13 @@
     }
 
     img {
-      height: 180px;
+      height: 184px;
       object-fit: cover;
       border-radius: $border-radius-sm;
       transition: $fast-transition;
-      border: 1px solid rgba($cyberpunk-red-faint, 0.2);
+      border: 1px solid rgba($cyberpunk-red-faint, 0.25);
       max-width: 100%;
+      background: rgba($space-black, 0.4);
       
       @media (max-width: $mobile) {
         height: 140px;
@@ -155,15 +268,15 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.1rem;
 
     .tag {
-      font-size: 1rem;
+      font-size: 0.9rem;
       padding: 4px 10px;
-      border-radius: $border-radius-sm;
-      background-color: $primary-lighter;
-      color: rgba($space-white, 0.8);
-      border: 1px solid rgba($cyberpunk-red-faint, 0.3);
+      border-radius: 999px;
+      background-color: rgba($primary-trace, 1);
+      color: rgba($space-white, 0.82);
+      border: 1px solid rgba($cyberpunk-red-faint, 0.35);
       transition: $fast-transition;
 
       &:hover {
@@ -175,23 +288,31 @@
 
   a {
     margin-top: auto;
-    padding: 0.7rem 1.4rem;
+    padding: 0.8rem 1.2rem;
     border-radius: $border-radius-sm;
     font-weight: $font-medium;
     transition: $fast-transition;
     border: 1px solid $cyberpunk-red-faint;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    background: $primary-lighter;
+    font-size: 0.98rem;
+    letter-spacing: 0.4px;
+    background: rgba($primary-trace, 0.8);
     text-align: center;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     box-sizing: border-box;
 
     &:hover {
-      background: rgba($cyberpunk-red-faint, 0.15);
+      background: rgba($cyberpunk-red-faint, 0.16);
       transform: translateY(-2px);
       border-color: $cyberpunk-red;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px $primary-faint, 0 0 0 4px rgba($space-white, 0.08);
+      transform: translateY(-1px);
     }
 
     &:active {
@@ -203,10 +324,10 @@
 /* Mobil Uyumluluk */
 @media (max-width: $tablet) {
   .project-card {
-    padding: 1.5rem;
+    padding: 1.3rem;
     
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
     }
 
     p {
@@ -220,11 +341,11 @@
     }
     
     .project-tags .tag {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
     }
     
     a {
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.1rem;
       font-size: 0.95rem;
     }
   }
@@ -232,15 +353,15 @@
 
 @media (max-width: $mobile) {
   .project-card {
-    padding: 1.2rem;
+    padding: 1.1rem;
     
     h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
 
     p {
       font-size: 0.9rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.1rem;
     }
 
     .project-card-images {
@@ -251,14 +372,22 @@
       margin-bottom: 1.2rem;
       
       .tag {
-        font-size: 0.7rem;
-        padding: 3px 8px;
+        font-size: 0.72rem;
+        padding: 3px 10px;
       }
     }
     
     a {
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1rem;
       font-size: 0.9rem;
     }
   }
 } 
+
+// Hareket azaltma tercihi
+@media (prefers-reduced-motion: reduce) {
+  .project-card, .project-card * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

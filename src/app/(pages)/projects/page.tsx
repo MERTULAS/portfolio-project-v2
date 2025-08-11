@@ -53,7 +53,7 @@ const ProjectsPage = () => {
       description: 'Raycaster Engine in JavaScript',
       images: ['/assets/img/projects/raycaster1.gif', '/assets/img/projects/raycaster2.gif'],
       link: 'https://github.com/MERTULAS/RayCastingEngineJS',
-      tags: ['JavaScript', 'Raycasting', 'Game Development', 'Computer Graphics'],
+      tags: ['JavaScript', 'Raycasting', '3D Game Engine', 'Game Development', 'Computer Graphics'],
       slug: 'raycaster-engine',
       seoDescription: 'A Raycaster Engine developed with JavaScript, used to create classic FPS-style graphics rendering.',
       datePublished: '2025-03-28',
@@ -86,15 +86,15 @@ const ProjectsPage = () => {
     },
     {
       title: 'Revelation Performance',
-      description: 'Website for Revelation Performance, a company that provides chip tuning services for cars',
-      images: ['/assets/img/projects/revelation-performance.png', '/assets/img/projects/revelation-performance2.png', '/assets/img/projects/revelation-performance3.png'],
+      description: 'A corporate full-stack website built for Revelation Performance, including an admin panel, backend service, and public website',
+      images: ['/assets/img/projects/revelation-performance1.gif', '/assets/img/projects/revelation-performance6.png', '/assets/img/projects/revelation-performance7.png', '/assets/img/projects/revelation-performance5.png', '/assets/img/projects/revelation-performance4.png'],
       link: 'https://www.revelationperformance.com/',
-      tags: ['Next.js', 'CSS'],
+      tags: ['Next.js', 'TypeScript','Express', 'MongoDB', 'SCSS', 'Admin Panel', 'Backend Service'],
       slug: 'revelation-performance',
-      seoDescription: 'Corporate website developed for Revelation Performance, a company that provides chip tuning services for vehicles.',
+      seoDescription: 'Corporate full-stack website developed for Revelation Performance, a company that provides chip tuning services for vehicles. Includes an admin panel, backend service, and public website.',
       datePublished: '2025-03-28',
-      projectType: 'website',
-      technologies: ['Next.js', 'SCSS', 'Responsive Design']
+      projectType: 'full-stack website',
+      technologies: ['Next.js', 'TypeScript', 'Express', 'MongoDB', 'SCSS', 'Responsive Design']
     }
   ];
 
